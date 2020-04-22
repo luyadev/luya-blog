@@ -61,6 +61,7 @@ class BlogOverviewWidget extends Widget
     {
         return new Pagination([
             'totalCount' => $this->getTotalCount(),
+            'pageSize' => $this->perPage,
         ]);
     }
 
