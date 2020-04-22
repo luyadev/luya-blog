@@ -2,7 +2,7 @@
   <img src="https://raw.githubusercontent.com/luyadev/luya/master/docs/logo/luya-logo-0.2x.png" alt="LUYA Logo"/>
 </p>
 
-# LUYA *VENDOR/NAME* module/extension
+# LUYA BLOG EXTENSION
 
 [![LUYA](https://img.shields.io/badge/Powered%20by-LUYA-brightgreen.svg)](https://luya.io)
 
@@ -13,7 +13,7 @@
 Install the extension through composer:
 
 ```sh
-composer require VENDOR/NAME
+composer require luyadev/luya-blog
 ```
 
 Run the import command afterwards:
@@ -23,5 +23,3 @@ Run the import command afterwards:
 ```
 
 ## Usage
-
-*Usage description*
