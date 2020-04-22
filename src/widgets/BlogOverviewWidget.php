@@ -62,6 +62,9 @@ class BlogOverviewWidget extends Widget
         return new Pagination([
             'totalCount' => $this->getTotalCount(),
             'pageSize' => $this->perPage,
+            'defaultPageSize' => $this->perPage,
+            'route' => '/cms/default/index',
+            'params' => ['page' => Yii::$app->request->get('page'), 'path' => $this->getRootItem()->alias]
         ]);
     }
 
