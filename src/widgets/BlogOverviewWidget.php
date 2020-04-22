@@ -8,11 +8,37 @@ use luya\cms\menu\QueryOperatorFieldInterface;
 use Yii;
 use yii\data\Pagination;
 
+/**
+ * Blog Overview Widgets.
+ * 
+ * Display pages based on a root item.
+ * 
+ * ```php
+ * <?php $blog = BlogOverviewWidget::begin(['rootId' => 1]); ?>
+ *     <h2>Blogs</h2>
+ *     <?php foreach ($blog->items as $item): ?>
+ *           <h3><?= $item->title; ?></h3>
+ *     <?php endforeach; ?>
+ * 
+ *     <?= LinkPager::widget(['pagination' => $blog->pagination]); ?>
+ * 
+ * <?php BlogOverviewWidget::end();
+ * ```
+ *  
+ * @property Item[] $items Return the items for current page.
+ * @property Pagination $pagination Get the pagination object for LinkPager Widget.
+ */
 class BlogOverviewWidget extends Widget
 {
     public $perPage = 10;
 
     public $rootId;
+
+    /**
+     * @var boolean This is usefull when blog items are created within a year subpage. Assuming /blog/2019/my-blog where 2019 is a page.
+     * If enabled the 2019 entries (first level of $rootId) will be skiped.
+     */
+    public $skipFirstLevel = false;
 
     public function init()
     {
@@ -38,6 +64,11 @@ class BlogOverviewWidget extends Widget
         ]);
     }
 
+    /**
+     * Undocumented function
+     *
+     * @return Item[]
+     */
     public function getItems()
     {
         return $this->itemsByPage($this->getPagination()->getPage());
@@ -77,6 +108,14 @@ class BlogOverviewWidget extends Widget
      */
     public function getItemIds()
     {
+        if ($this->skipFirstLevel) {
+            $ids = [];
+            foreach ($this->getRootItem()->children as $child) {
+                $ids = array_merge($ids, $child->children->column('id'));
+            }
+            return $ids;
+    
+        }
         return $this->getRootItem()->getDescendants()->column(QueryOperatorFieldInterface::FIELD_ID);
     }
 
@@ -85,6 +124,10 @@ class BlogOverviewWidget extends Widget
      */
     public function getRootItem()
     {
-        return Yii::$app->menu->findOne([QueryOperatorFieldInterface::FIELD_ID => $this->rootId]);
+        if ($this->rootId) {
+            return Yii::$app->menu->findOne([QueryOperatorFieldInterface::FIELD_ID => $this->rootId]);
+        }
+        
+        return Yii::$app->menu->current;
     }
 }
