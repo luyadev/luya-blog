@@ -29,8 +29,31 @@ jobs:
           extensions: apc, curl, dom, imagick, intl, mbstring, mcrypt, memcached, mysql, pdo, pdo_mysql, pdo_pgsql, pdo_sqlite, pgsql, sqlite
           ini-values: date.timezone='UTC'
 
+      ## install composer
       - name: Install dependencies
         run: composer install $DEFAULT_COMPOSER_FLAGS
 
+      ## run unit tests
       - name: PHP Unit tests for PHP 
-        run: vendor/bin/phpunit tests
+        run: vendor/bin/phpunit --verbose --configuration actions.phpunit.xml
+        if: matrix.php == '7.4' || matrix.php == '7.3' || matrix.php == '7.2' || matrix.php == '7.0'
+
+      - name: PHP Unit tests for PHP 7.1
+        run: vendor/bin/phpunit --verbose --coverage-clover=coverage.clover --configuration actions.phpunit.xml
+        if: matrix.php == '7.1'
+
+      ## code climate
+      - name: upload codeclimate
+        uses: paambaati/codeclimate-action@v2.2.4
+        env:
+          CC_TEST_REPORTER_ID: 945dfb58a832d233a3caeb84e3e6d3be212e8c7abcb48117fce63b9adcb43647
+        with:
+          coverageCommand: yarn coverage
+
+      - name: Code coverage
+        run: |
+          curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+          chmod +x ./cc-test-reporter
+          ./cc-test-reporter after-build -t clover --exit-code
+        if: matrix.php == '7.1'
+        continue-on-error: true # if is fork
