@@ -26,6 +26,15 @@ class BlogTestCase extends WebApplicationTestCase
                                         'id' => 2,
                                         'title' => 'World',
                                         'link' => 'hello-world-link',
+                                        'is_home' => 0,
+                                        'items' => [
+                                            [
+                                                'id' => 3,
+                                                'title' => 'Sub of World',
+                                                'link' => 'hello-world-link/sub-of-world',
+                                                'is_home' => 0,
+                                            ]
+                                        ]  
                                     ]
                                 ]   
                             ]

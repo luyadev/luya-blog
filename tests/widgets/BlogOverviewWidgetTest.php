@@ -18,7 +18,21 @@ class BlogOverviewWidgetTest extends BlogTestCase
     public function testRun()
     {
         ob_start();
-        $blog = BlogOverviewWidget::begin(['rootId' => 1]);
+        $blog = BlogOverviewWidget::begin(['rootId' => 1, 'skipFirstLevel' => false]);
+        foreach ($blog->getItems() as $item) {
+            echo "[title: " .$item->title."]";
+        }
+        $blog::end();
+
+        $content = ob_get_clean();
+
+        $this->assertSame('[title: World][title: Sub of World]', $content);
+    }
+
+    public function testRunSkipFirstLevel()
+    {
+        ob_start();
+        $blog = BlogOverviewWidget::begin(['skipFirstLevel' => true]);
         foreach ($blog->getItems() as $item) {
             echo "title: " .$item->title;
         }
@@ -26,6 +40,6 @@ class BlogOverviewWidgetTest extends BlogTestCase
 
         $content = ob_get_clean();
 
-        $this->assertSame('title: World', $content);
+        $this->assertSame('title: Sub of World', $content);
     }
 }
