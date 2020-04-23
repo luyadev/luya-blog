@@ -2,11 +2,11 @@
   <img src="https://raw.githubusercontent.com/luyadev/luya/master/docs/logo/luya-logo-0.2x.png" alt="LUYA Logo"/>
 </p>
 
-# LUYA BLOG EXTENSION
+# LUYA Blog
 
 [![LUYA](https://img.shields.io/badge/Powered%20by-LUYA-brightgreen.svg)](https://luya.io)
 
-*Package description*
+This package helps to create Blog behaviors with LUYA CMS.
 
 ## Installation
 
@@ -16,10 +16,6 @@ Install the extension through composer:
 composer require luyadev/luya-blog
 ```
 
-Run the import command afterwards:
-
-```sh
-./luya import
-```
-
 ## Usage
+
+Use the BlogOverviewWidget.
