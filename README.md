@@ -5,6 +5,8 @@
 # LUYA Blog
 
 ![Tests](https://github.com/luyadev/luya-blog/workflows/Tests/badge.svg)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/deb4edcd0aad00ca4bb1/test_coverage)](https://codeclimate.com/github/luyadev/luya-blog/test_coverage)
+[![Maintainability](https://api.codeclimate.com/v1/badges/deb4edcd0aad00ca4bb1/maintainability)](https://codeclimate.com/github/luyadev/luya-blog/maintainability)
 [![LUYA](https://img.shields.io/badge/Powered%20by-LUYA-brightgreen.svg)](https://luya.io)
 
 This package helps to create Blog behaviors with LUYA CMS.
