@@ -5,7 +5,7 @@ on: [push, pull_request]
 env:
   DEFAULT_COMPOSER_FLAGS: "--prefer-dist --no-interaction --ignore-platform-reqs"
   PHPUNIT_EXCLUDE_GROUP: mssql,oci,wincache,xcache,zenddata,cubrid
-
+  CC_TEST_REPORTER_ID: 2835dd69bd73ebcb32addfc28897c41023b60f3585031b4155ede3b4ce49dceb
 jobs:
   phpunit:
     name: PHP ${{ matrix.php }} on ${{ matrix.os }}
@@ -48,6 +48,6 @@ jobs:
         run: |
           curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
           chmod +x ./cc-test-reporter
-          ./cc-test-reporter after-build -t clover --exit-code
+          ./cc-test-reporter after-build -t clover
         if: matrix.php == '7.1'
         continue-on-error: true # if is fork
