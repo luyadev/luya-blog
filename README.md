@@ -4,6 +4,7 @@
 
 # LUYA Blog
 
+![Tests](https://github.com/luyadev/luya-blog/workflows/Tests/badge.svg)
 [![LUYA](https://img.shields.io/badge/Powered%20by-LUYA-brightgreen.svg)](https://luya.io)
 
 This package helps to create Blog behaviors with LUYA CMS.
