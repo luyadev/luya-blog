@@ -21,4 +21,16 @@ composer require luyadev/luya-blog
 
 ## Usage
 
-Use the BlogOverviewWidget.
+The main idea behind LUYA Blog is to create a CMS Folder Structure which might be not rendered inside the application menu, but display in a "blog section" block. See the CMS Page illustration tree below:
+
+```
+.
+├── About
+├── Blog <= Add the BlogOverviewWidget here
+│   ├── First Entry
+│   ├── Second Entry
+│   └── Last Entry
+└── Homepage
+```
+
++ [BlogOverviewWidget](https://github.com/luyadev/luya-blog/blob/master/src/widgets/BlogOverviewWidget.php): Use this widget to display all children pages for a given root page.

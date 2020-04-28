@@ -27,6 +27,9 @@ use yii\data\Pagination;
  *  
  * @property Item[] $items Return the items for current page.
  * @property Pagination $pagination Get the pagination object for LinkPager Widget.
+ * 
+ * @author Basil Suter <git@nadar.io>
+ * @since 1.0.0
  */
 class BlogOverviewWidget extends Widget
 {
