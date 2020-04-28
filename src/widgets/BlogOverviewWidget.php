@@ -14,7 +14,7 @@ use yii\data\Pagination;
  * Display pages based on a root item.
  * 
  * ```php
- * <?php $blog = BlogOverviewWidget::begin(['rootId' => 1]); ?>
+ * <?php $blog = BlogOverviewWidget::begin(); ?>
  *     <h2>Blogs</h2>
  *     <?php foreach ($blog->items as $item): ?>
  *           <h3><?= $item->title; ?></h3>
@@ -30,8 +30,14 @@ use yii\data\Pagination;
  */
 class BlogOverviewWidget extends Widget
 {
+    /**
+     * @var integer The number of items per page.
+     */
     public $perPage = 10;
 
+    /**
+     * @var integer The Nav Id which will be taken as root to travarse its children, which are then blogs.
+     */
     public $rootId;
 
     /**
