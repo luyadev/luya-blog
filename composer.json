@@ -11,7 +11,7 @@
 		}
 	],
 	"require-dev" : {
-	    "luyadev/luya-testsuite" : "^1.0"
+	    "luyadev/luya-testsuite" : "^2.0"
 	},
 	"autoload" : {
 		"psr-4" : {
@@ -20,8 +20,18 @@
 	},
 	"autoload-dev" : {
        "psr-4" : {
-		   "luya\\blog\\tests\\" : "tests/",
-		   "luya\\testsuite\\" : "../luya-testsuite/src"
+		   "luya\\blog\\tests\\" : "tests/"
        }
-    }
+    },
+	"config": {
+        "fxp-asset": {
+            "enabled": false
+        }
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
+        }
+    ]
 }
