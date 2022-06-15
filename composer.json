@@ -10,6 +10,10 @@
 			"email": "git@nadar.io"
 		}
 	],
+	"require": {
+		"luyadev/luya-module-admin" : "*",
+		"luyadev/luya-module-cms" : "*"
+	},
 	"require-dev" : {
 	    "luyadev/luya-testsuite" : "^3.0"
 	},

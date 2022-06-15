@@ -4,6 +4,7 @@ namespace luya\blog\widgets;
 
 use luya\base\Widget;
 use luya\cms\menu\Item;
+use luya\cms\menu\Query;
 use luya\cms\menu\QueryOperatorFieldInterface;
 use Yii;
 use yii\data\Pagination;
@@ -42,6 +43,8 @@ class BlogOverviewWidget extends Widget
      * @var integer The Nav Id which will be taken as root to travarse its children, which are then blogs.
      */
     public $rootId;
+
+    public $orderBy = [QueryOperatorFieldInterface::FIELD_TIMESTAMPCREATE => SORT_DESC];
 
     /**
      * @var boolean This is usefull when blog items are created within a year subpage. Assuming /blog/2019/my-blog where 2019 is a page.
@@ -105,12 +108,18 @@ class BlogOverviewWidget extends Widget
      */
     protected function itemsByPage($page)
     {
+        /** @var Query $query */
         $query = Yii::$app->menu->find()->where(['in', QueryOperatorFieldInterface::FIELD_ID, $this->getItemIds()]);
         // set query limit
         $query->limit($this->perPage);
         // set query offset (offset * page)
         $query->offset($page * $this->perPage);
 
+        // order by given timestamp
+        if ($this->orderBy) {
+            $query->orderBy($this->orderBy);
+        }
+        
         return $query->all();
     }
 
