@@ -44,6 +44,10 @@ class BlogOverviewWidget extends Widget
      */
     public $rootId;
 
+    /**
+     * @var array Order by certain fields. If empty or false, no ordering.
+     * @since 1.1.0
+     */
     public $orderBy = [QueryOperatorFieldInterface::FIELD_TIMESTAMPCREATE => SORT_DESC];
 
     /**
@@ -65,8 +69,6 @@ class BlogOverviewWidget extends Widget
     }
 
     /**
-     * Undocumented function
-     *
      * @return Pagination
      */
     public function getPagination()
@@ -81,8 +83,6 @@ class BlogOverviewWidget extends Widget
     }
 
     /**
-     * Undocumented function
-     *
      * @return Item[]
      */
     public function getItems()
@@ -91,8 +91,6 @@ class BlogOverviewWidget extends Widget
     }
     
     /**
-     * Undocumented function
-     *
      * @return integer Total number of entries
      */
     public function getTotalCount()
@@ -101,9 +99,7 @@ class BlogOverviewWidget extends Widget
     }
 
     /**
-     * Undocumented function
-     *
-     * @param [type] $page
+     * @param int $page
      * @return Item[]
      */
     protected function itemsByPage($page)
@@ -119,13 +115,11 @@ class BlogOverviewWidget extends Widget
         if ($this->orderBy) {
             $query->orderBy($this->orderBy);
         }
-        
+
         return $query->all();
     }
 
     /**
-     * Undocumented function
-     *
      * @return array
      */
     public function getItemIds()
